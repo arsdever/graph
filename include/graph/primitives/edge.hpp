@@ -23,8 +23,8 @@ namespace graph
         {
         }
         id_t id() { return 0; }
-        source_t source() { return nullptr; }
-        target_t target() { return nullptr; }
+        source_t source() { return _source; }
+        target_t target() { return _target; }
 
     private:
         source_t _source;
