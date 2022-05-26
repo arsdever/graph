@@ -32,8 +32,8 @@ namespace graph
                                               constraints>::value)
                     return e->source() == v1 && e->target() == v2;
                 else
-                    return e->source() == v1 && e->target() == v2 ||
-                           e->source() == v2 && e->target() == v1;
+                    return (e->source() == v1 && e->target() == v2) ||
+                           (e->source() == v2 && e->target() == v1);
                 }) == edges.end())
                 std::back_inserter(edges) = std::make_shared<E>(v1, v2);
         }
