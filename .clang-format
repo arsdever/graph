@@ -69,11 +69,11 @@ ForEachMacros:
   - BOOST_FOREACH
 IncludeBlocks:   Regroup
 IncludeCategories:
-  - Regex:           'stdafx\.h'
+  - Regex:           'stdafx\.(h|hpp)'
     Priority:        -3
-  - Regex:           'prototypes\.h'
+  - Regex:           'prototypes\.(h|hpp)'
     Priority:        -2
-  - Regex:           '<[[:alnum:]_.]+>'
+  - Regex:           '<[[:alnum:]_./]+>'
     Priority:        -1
   - Regex:           '.*'
     Priority:        1
