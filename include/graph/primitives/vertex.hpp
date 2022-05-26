@@ -13,7 +13,13 @@ namespace graph
         using id_t = int;
 
     public:
-        id_t id() { return 0; }
-    };
+        vertex(id_t id = 0)
+            : _id(id)
+        {
+        }
+        id_t id() { return _id; }
 
+    private:
+        id_t _id;
+    };
 } // namespace graph
