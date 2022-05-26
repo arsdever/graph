@@ -5,5 +5,5 @@
 namespace graph
 {
     template <typename T>
-    concept is_edge = has_id<T> && defines_ptr_types<T>;
+    concept is_vertex = has_id<T> && defines_ptr_types<T>;
 } // namespace graph
