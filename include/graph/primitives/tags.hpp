@@ -9,4 +9,9 @@ namespace graph
     struct undirected_graph_tag
     {
     };
+
+    template <typename... TAGS>
+    struct tags : TAGS...
+    {
+    };
 } // namespace graph
