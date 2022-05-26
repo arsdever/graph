@@ -1,7 +1,6 @@
 #pragma once
 
-#include <graph/primitives/edge.hpp>
-#include <graph/primitives/vertex.hpp>
+#include <graph/primitives/concepts.hpp>
 
 namespace graph
 {
