@@ -23,7 +23,11 @@ int main(int argc, char** argv)
         using wptr_t = graph::weak<edg>;
         using uptr_t = graph::unique<edg>;
         using id_t = int;
+        using source_t = vtx::ptr_t;
+        using target_t = vtx::ptr_t;
         id_t id() { return 0; }
+        source_t source() { return nullptr; }
+        target_t target() { return nullptr; }
     };
 
     graph::graph<vtx, edg> graph;
