@@ -14,6 +14,8 @@ namespace graph
     public:
         graph() { }
 
+        void add_vertex(V v) { std::back_inserter(vertices) = v; }
+
     private:
         vertex_container vertices;
         edge_container edges;
