@@ -8,8 +8,12 @@ namespace graphlib
     template <is_vertex V,
               is_edge E,
               typename constraints = void,
-              is_container vertex_container = std::vector<typename V::ptr_t>,
-              is_container edge_container = std::vector<typename E::ptr_t>>
+              template <typename, typename...> typename vertex_container =
+                  std::vector,
+              template <typename, typename...> typename edge_container =
+                  std::vector>
+    requires is_container<vertex_container<typename V::ptr_t>> &&
+        is_container<edge_container<typename E::ptr_t>>
     class graph
     {
     public:
@@ -68,7 +72,7 @@ namespace graphlib
         std::size_t edge_count() const { return edges.size(); }
 
     private:
-        vertex_container vertices;
-        edge_container edges;
+        vertex_container<typename V::ptr_t> vertices;
+        edge_container<typename E::ptr_t> edges;
     };
 } // namespace graphlib
