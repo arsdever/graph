@@ -12,8 +12,8 @@ namespace graph
         using wptr_t = weak<edge>;
         using uptr_t = unique<edge>;
         using id_t = int;
-        using source_t = typename vertex::ptr_t;
-        using target_t = typename vertex::ptr_t;
+        using source_t = typename vertex::wptr_t;
+        using target_t = typename vertex::wptr_t;
 
     public:
         edge(source_t source, target_t target, id_t id = 0)
