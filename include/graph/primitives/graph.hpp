@@ -7,9 +7,9 @@ namespace graphlib
 {
     template <is_vertex V,
               is_edge E,
+              typename constraints = void,
               is_container vertex_container = std::vector<typename V::ptr_t>,
-              is_container edge_container = std::vector<typename E::ptr_t>,
-              typename constraints = void>
+              is_container edge_container = std::vector<typename E::ptr_t>>
     class graph
     {
     public:
