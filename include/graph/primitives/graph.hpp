@@ -3,7 +3,7 @@
 #include <graph/primitives/concepts.hpp>
 #include <graph/primitives/tags.hpp>
 
-namespace graph
+namespace graphlib
 {
     template <is_vertex V,
               is_edge E,
@@ -69,4 +69,4 @@ namespace graph
         vertex_container vertices;
         edge_container edges;
     };
-} // namespace graph
+} // namespace graphlib

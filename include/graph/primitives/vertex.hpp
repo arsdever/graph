@@ -2,7 +2,7 @@
 
 #include <graph/primitives/concepts.hpp>
 
-namespace graph
+namespace graphlib
 {
     class vertex
     {
@@ -22,4 +22,4 @@ namespace graph
     private:
         id_t _id;
     };
-} // namespace graph
+} // namespace graphlib

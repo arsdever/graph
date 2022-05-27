@@ -3,7 +3,7 @@
 #include <concepts>
 #include <memory>
 
-namespace graph
+namespace graphlib
 {
 #pragma region pointers
     template <typename T>
@@ -96,4 +96,4 @@ namespace graph
             t.target()
             } -> std::convertible_to<typename T::target_t>;
     };
-} // namespace graph
+} // namespace graphlib

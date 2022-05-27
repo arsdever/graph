@@ -3,7 +3,7 @@
 #include <graph/primitives/concepts.hpp>
 #include <graph/primitives/vertex.hpp>
 
-namespace graph
+namespace graphlib
 {
     class edge
     {
@@ -32,4 +32,4 @@ namespace graph
         target_t _target;
         id_t _id;
     };
-} // namespace graph
+} // namespace graphlib

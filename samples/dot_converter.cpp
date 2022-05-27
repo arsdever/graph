@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
     auto args = parse_args(argc, argv);
 
-    graph::graph<graph::vertex, graph::edge> graph;
+    graphlib::graph<graphlib::vertex, graphlib::edge> graph;
 
     auto v1 = graph.create_vertex();
     auto v2 = graph.create_vertex();

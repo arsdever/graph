@@ -1,6 +1,6 @@
 #pragma once
 
-namespace graph
+namespace graphlib
 {
     struct directed_graph_tag
     {
@@ -14,4 +14,4 @@ namespace graph
     struct tags : TAGS...
     {
     };
-} // namespace graph
+} // namespace graphlib
