@@ -25,6 +25,7 @@ namespace graph
         id_t id() { return 0; }
         source_t source() { return _source; }
         target_t target() { return _target; }
+        bool is_loop() const { return _source.lock() == _target.lock(); }
 
     private:
         source_t _source;
