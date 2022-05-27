@@ -65,6 +65,7 @@ namespace graphlib
             return *edge_it;
         }
         std::size_t vertex_count() const { return vertices.size(); }
+        std::size_t edge_count() const { return edges.size(); }
 
     private:
         vertex_container vertices;
