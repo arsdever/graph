@@ -1,9 +1,10 @@
 #include <stdafx.hpp>
 
+#include <graph/algorithms/acyclic_check.hpp>
 #include <graph/primitives/edge.hpp>
 #include <graph/primitives/graph.hpp>
-#include <graph/primitives/vertex.hpp>
 #include <graph/primitives/tags.hpp>
+#include <graph/primitives/vertex.hpp>
 #include <gtest/gtest.h>
 
 TEST(Graph, AddVertices)
@@ -58,6 +59,24 @@ TEST(DirectedGraph, AddEdges)
     auto e5 = g.add_edge(v3, v3);
     EXPECT_EQ(g.edge_count(), 5);
     EXPECT_TRUE(e5.lock()->is_loop());
+}
+
+TEST(UndirectedGraph, IsAcyclic)
+{
+    using namespace graphlib;
+    graph<vertex, edge> g;
+    auto v1 = g.create_vertex();
+    auto v2 = g.create_vertex();
+    auto v3 = g.create_vertex();
+    EXPECT_FALSE(is_acyclic(g));
+    auto e1 = g.add_edge(v1, v2);
+    EXPECT_FALSE(is_acyclic(g));
+    auto e2 = g.add_edge(v2, v3);
+    EXPECT_FALSE(is_acyclic(g));
+    auto e3 = g.add_edge(v3, v1);
+    EXPECT_TRUE(is_acyclic(g));
+    auto e4 = g.add_edge(v1, v1);
+    EXPECT_TRUE(is_acyclic(g));
 }
 
 int main(int argc, char** argv)
