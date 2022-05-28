@@ -96,4 +96,35 @@ namespace graphlib
             t.target()
             } -> std::convertible_to<typename T::target_t>;
     };
+
+    template <typename T>
+    concept is_graph = requires(T t)
+    {
+        typename T::vertex_t;
+        typename T::edge_t;
+        {
+            t.vertex_count()
+            } -> std::convertible_to<typename T::size_type>;
+        {
+            t.edge_count()
+            } -> std::convertible_to<typename T::size_type>;
+        {
+            t.vertices()
+            } -> is_container;
+        {
+            t.edges()
+            } -> is_container;
+        {
+            t.create_vertex()
+            } -> std::convertible_to<typename T::vertex_t::wptr_t>;
+        {
+            t.add_edge(T::vertex_t::wptr_t, T::vertex_t::wptr_t)
+            } -> std::convertible_to<typename T::edge_t::wptr_t>;
+        {
+            t.remove_vertex(t.add_vertex())
+            } -> std::convertible_to<void>;
+        {
+            t.remove_edge(t.add_edge(t.add_vertex(), t.add_vertex()))
+            } -> std::convertible_to<void>;
+    };
 } // namespace graphlib
