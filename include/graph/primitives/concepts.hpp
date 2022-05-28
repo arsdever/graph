@@ -104,10 +104,10 @@ namespace graphlib
         typename T::edge_t;
         {
             t.vertex_count()
-            } -> std::convertible_to<typename T::size_type>;
+            } -> std::convertible_to<typename std::size_t>;
         {
             t.edge_count()
-            } -> std::convertible_to<typename T::size_type>;
+            } -> std::convertible_to<typename std::size_t>;
         {
             t.vertices()
             } -> is_container;
@@ -118,13 +118,14 @@ namespace graphlib
             t.create_vertex()
             } -> std::convertible_to<typename T::vertex_t::wptr_t>;
         {
-            t.add_edge(T::vertex_t::wptr_t, T::vertex_t::wptr_t)
+            t.add_edge(typename T::vertex_t::wptr_t{},
+                       typename T::vertex_t::wptr_t{})
             } -> std::convertible_to<typename T::edge_t::wptr_t>;
         {
-            t.remove_vertex(t.add_vertex())
+            t.remove_vertex(typename T::vertex_t::id_t{})
             } -> std::convertible_to<void>;
         {
-            t.remove_edge(t.add_edge(t.add_vertex(), t.add_vertex()))
+            t.remove_edge(typename T::edge_t::id_t{})
             } -> std::convertible_to<void>;
     };
 } // namespace graphlib
