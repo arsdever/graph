@@ -17,6 +17,14 @@ namespace graphlib
     class graph
     {
     public:
+        using vertex_t = V;
+        using edge_t = E;
+        template <typename T, typename... ARGS>
+        using vertex_container_t = vertex_container<T, ARGS...>;
+        template <typename T, typename... ARGS>
+        using edge_container_t = edge_container<T, ARGS...>;
+
+    public:
         typename V::wptr_t create_vertex()
         {
             typename V::ptr_t vertex = std::make_shared<V>(vertices.size());
@@ -72,7 +80,7 @@ namespace graphlib
         std::size_t edge_count() const { return edges.size(); }
 
     private:
-        vertex_container<typename V::ptr_t> vertices;
-        edge_container<typename E::ptr_t> edges;
+        vertex_container_t<typename V::ptr_t> vertices;
+        edge_container_t<typename E::ptr_t> edges;
     };
 } // namespace graphlib
