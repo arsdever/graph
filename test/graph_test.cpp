@@ -54,7 +54,7 @@ TEST(UndirectedGraph, AddEdgesCheckAdjacency)
 TEST(DirectedGraph, AddEdgesCheckAdjacency)
 {
     using namespace graphlib;
-    graph<vertex, edge> g;
+    graph<vertex, edge, tags<directed_graph_tag>> g;
     auto v1 = g.create_vertex();
     auto v2 = g.create_vertex();
     auto e1 = g.add_edge(v1, v2);
