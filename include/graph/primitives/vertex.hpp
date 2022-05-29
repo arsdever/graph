@@ -1,7 +1,6 @@
 #pragma once
 
 #include <graph/primitives/concepts.hpp>
-#include <span>
 
 namespace graphlib
 {
