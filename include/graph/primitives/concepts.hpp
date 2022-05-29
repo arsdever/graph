@@ -118,14 +118,17 @@ namespace graphlib
             t.create_vertex()
             } -> std::convertible_to<typename T::vertex_t::wptr_t>;
         {
-            t.add_edge(typename T::vertex_t::wptr_t{},
-                       typename T::vertex_t::wptr_t{})
+            t.add_edge(typename T::vertex_t::wptr_t {},
+                       typename T::vertex_t::wptr_t {})
             } -> std::convertible_to<typename T::edge_t::wptr_t>;
         {
-            t.remove_vertex(typename T::vertex_t::id_t{})
+            t.remove_vertex(typename T::vertex_t::id_t {})
             } -> std::convertible_to<void>;
         {
-            t.remove_edge(typename T::edge_t::id_t{})
+            t.remove_edge(typename T::edge_t::id_t {})
             } -> std::convertible_to<void>;
+        {
+            t.vertex_connections(typename T::vertex_t::id_t {})
+            } -> is_container;
     };
 } // namespace graphlib

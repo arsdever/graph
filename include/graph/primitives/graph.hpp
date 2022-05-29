@@ -8,10 +8,8 @@ namespace graphlib
     template <is_vertex V,
               is_edge E,
               typename constraints = void,
-              template <typename, typename...> typename vertex_container =
-                  std::vector,
-              template <typename, typename...> typename edge_container =
-                  std::vector>
+              template <typename...> typename vertex_container = std::vector,
+              template <typename...> typename edge_container = std::vector>
     requires is_container<vertex_container<typename V::ptr_t>> &&
         is_container<edge_container<typename E::ptr_t>>
     class graph
@@ -19,10 +17,10 @@ namespace graphlib
     public:
         using vertex_t = V;
         using edge_t = E;
-        template <typename T, typename... ARGS>
-        using vertex_container_t = vertex_container<T, ARGS...>;
-        template <typename T, typename... ARGS>
-        using edge_container_t = edge_container<T, ARGS...>;
+        template <typename... ARGS>
+        using vertex_container_t = vertex_container<ARGS...>;
+        template <typename... ARGS>
+        using edge_container_t = edge_container<ARGS...>;
 
     public:
         typename V::wptr_t create_vertex()
@@ -70,6 +68,12 @@ namespace graphlib
             {
                 typename E::ptr_t edge =
                     std::make_shared<E>(v1.lock(), v2.lock());
+                v1.lock()->add_adjacency(v2);
+                if constexpr (!std::is_base_of<directed_graph_tag,
+                                               constraints>::value)
+                {
+                    v2.lock()->add_adjacency(v1);
+                }
                 std::back_inserter(_edges) = edge;
                 return edge;
             }
@@ -98,6 +102,25 @@ namespace graphlib
                                std::end(_edges),
                                [ &id ](auto e) { return e->id() == id; });
             std::erase(_edges, end);
+        }
+        edge_container_t<typename E::wptr_t>
+        vertex_connections(typename V::id_t id) const
+        {
+            edge_container_t<typename E::ptr_t> connections;
+            for (auto edge : _edges)
+            {
+                if (edge->source().lock()->id() == id ||
+                    edge->target().lock()->id() == id)
+                {
+                    if (std::find(connections.begin(),
+                                  connections.end(),
+                                  edge) == connections.end())
+                    {
+                        std::back_inserter(connections) = edge;
+                    }
+                }
+            }
+            return connections;
         }
 
     private:

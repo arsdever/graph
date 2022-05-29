@@ -40,6 +40,30 @@ TEST(UndirectedGraph, AddEdges)
     EXPECT_TRUE(e5.lock()->is_loop());
 }
 
+TEST(UndirectedGraph, AddEdgesCheckAdjacency)
+{
+    using namespace graphlib;
+    graph<vertex, edge> g;
+    auto v1 = g.create_vertex();
+    auto v2 = g.create_vertex();
+    auto e1 = g.add_edge(v1, v2);
+    EXPECT_TRUE(v1.lock()->is_adjacent_to(v2));
+    EXPECT_TRUE(v2.lock()->is_adjacent_to(v1));
+}
+
+TEST(DirectedGraph, AddEdgesCheckAdjacency)
+{
+    using namespace graphlib;
+    graph<vertex, edge> g;
+    auto v1 = g.create_vertex();
+    auto v2 = g.create_vertex();
+    auto e1 = g.add_edge(v1, v2);
+    EXPECT_TRUE(v1.lock()->is_adjacent_to(v2));
+    EXPECT_FALSE(v2.lock()->is_adjacent_to(v1));
+    auto e2 = g.add_edge(v2, v1);
+    EXPECT_TRUE(v2.lock()->is_adjacent_to(v1));
+}
+
 TEST(DirectedGraph, AddEdges)
 {
     using namespace graphlib;
