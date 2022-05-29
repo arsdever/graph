@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(graph)
 
-set(CMAKE_CXX_STANDARD 20)
+# helps on github codespaces
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
 option(BUILD_SAMPLES "Build Samples" OFF)
 option(BUILD_TESTING "Build tests" OFF)
